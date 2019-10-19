@@ -1,0 +1,1 @@
+export const sortByGoals = (x) => -x.get('goals');

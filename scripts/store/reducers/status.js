@@ -14,17 +14,17 @@ const transformActioToStatus = (action) => {
 
 export default function(state=DEFAULT_STATE, action) {
     if (action.type.endsWith('_PENDING')) {
-        return state.setIn(['statuses', transformActioToStatus(action.type),'pending'],  true);
+        return state.setIn(['statuses', transformActioToStatus(action.type), 'pending'], true);
     }
 
     if (action.type.endsWith('_REJECTED')) {
-        return state.setIn(['statuses', transformActioToStatus(action.type),'pending'],  false)
-                    .setIn(['statuses', transformActioToStatus(action.type),'rejected'],  true);
+        return state.setIn(['statuses', transformActioToStatus(action.type), 'pending'], false)
+                    .setIn(['statuses', transformActioToStatus(action.type), 'rejected'], true);
     }
 
     if (action.type.endsWith('_FULFILLED')) {
-        return state.setIn(['statuses', transformActioToStatus(action.type),'pending'],  false)
-                    .setIn(['statuses', transformActioToStatus(action.type),'fulfilled'],  true);
+        return state.setIn(['statuses', transformActioToStatus(action.type), 'pending'], false)
+                    .setIn(['statuses', transformActioToStatus(action.type), 'fulfilled'], true);
     }
 
     return state;

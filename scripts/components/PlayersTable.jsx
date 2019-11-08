@@ -2,8 +2,12 @@
   import classnames from 'classnames';
   import style from './styles/Styles.scss';
 
-  const PlayersTable = ({ players, playersIds }) => {
+  const PlayersTable = ({ players, playersIds, status }) => {
     const hilightStyle = (player) => classnames(style.row, {[style.hilightRow]: playersIds.get(player.getIn(['player', 'id'])) === true});
+  
+    if(status.get('get_players') && status.getIn(['get_players', 'pending'])) {
+      return <div class={style.row}>Loading...</div>
+    }
     return (
       <div class={style.container}>
           <div class={style.row}>

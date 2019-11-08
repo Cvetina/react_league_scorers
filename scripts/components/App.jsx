@@ -11,7 +11,8 @@ import style from './styles/Styles.scss';
 @connect((store) => ({
   players: store.sport.get('players'),
   limit: store.form.get('limit'),
-  playersIds: store.form.get('playersIds')
+  playersIds: store.form.get('playersIds'),
+  status: store.status.get('statuses'),
 }))
 class App extends React.Component {
 
@@ -28,7 +29,7 @@ class App extends React.Component {
   };
 
   render () {
-    const { limit, players, playersIds } = this.props;
+    const { limit, players, playersIds, status } = this.props;
     const expectedLimit =  limit > 2 && limit < 21 ? limit : 10;
     const sortedPlayers = players.sortBy(sortByGoals).slice(0, expectedLimit);
 
@@ -36,7 +37,7 @@ class App extends React.Component {
       <div class={style.mainContainer}>
         <PlayersIds sortedPlayers={sortedPlayers} handleCheck={this.handleCheck} playersIds={playersIds} />
         <LimitInput limit={limit} handleInputChange={this.handleInputChange} />
-        <PlayersTable playersIds={playersIds} players={sortedPlayers} />
+        <PlayersTable status={status} playersIds={playersIds} players={sortedPlayers} />
       </div>
     );
   }

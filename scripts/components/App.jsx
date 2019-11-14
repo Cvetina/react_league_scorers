@@ -7,6 +7,7 @@ import PlayersTable from './PlayersTable';
 import PlayersIds from './PlayersIds';
 import LimitInput from './LimitInput';
 import style from './styles/Styles.scss';
+import Api from '../api/Api';
 
 @connect((store) => ({
   players: store.sport.get('players'),
@@ -18,6 +19,7 @@ class App extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(actions.getPlayers());
+    Api.getStatistics().catch((err)=>console.log(err))
   }
 
   handleInputChange = (event) => {
